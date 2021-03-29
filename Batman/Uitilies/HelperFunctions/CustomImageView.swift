@@ -19,13 +19,7 @@ import UIKit
             
             lastURLUsedToLoadImage = urlstring
             
-            //We check if this urlstring exists in the Cache if it is equal to something i.e Exists in the Dictionary - We assign the image to the already
-            //Downloaded one in our Cache and we return
-    //        if let cachedImage = imageCache[urlstring] {
-    //            //the image of the ImageView instantiating this Class
-    //            self.image = cachedImage
-    //            return
-    //        }
+ 
             
             guard let url = URL(string: urlstring) else {return}
             
@@ -46,11 +40,11 @@ import UIKit
                 guard let imageData = data else { return }
                 let photoImage = UIImage(data: imageData)
                 
-                //We use the CacheDictionary and store this Image that is already downloaded and ready to be used
+                // the CacheDictionary and store this Image that is already downloaded and ready to be used
                 //Note We use the url.absoluteString key in storing so we can use it in detecting not to run this Img session again
                 imageCache[url.absoluteString] = photoImage
                 
-                //Wait for the whole App to be ready
+             
                 DispatchQueue.main.async {
                     //The UIImageView's image that is instantiang this Class is set to the loaded image from URL
                     self.image = photoImage
@@ -82,11 +76,10 @@ import UIKit
                 guard let imageData = data else { return }
                 let photoImage = UIImage(data: imageData)
                 
-                //We use the CacheDictionary and store this Image that is already downloaded and ready to be used
-                //Note We use the url.absoluteString key in storing so we can use it in detecting not to run this Img session again
+
                 imageCache[url.absoluteString] = photoImage?.tintImageColor(color: tintColor)
                 
-                //Wait for the whole App to be ready
+              
                 DispatchQueue.main.async {
                     //The UIImageView's image that is instantiang this Class is set to the loaded image from URL
                     self.image = photoImage?.tintImageColor(color: tintColor)

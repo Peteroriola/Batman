@@ -9,9 +9,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-//fileprivate let HOME_SECTION: [Int] = [0]
+
 class AllBatmanMoviesHomeVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    //Declare Variables
     let homeIdentifierCell = "homeIdentifierCell"
     var batmanModel =  [BatmanModel]()
     
@@ -49,14 +50,19 @@ class AllBatmanMoviesHomeVC : UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        //Navigation bar Manipulation
         navigationItem.titleView = navbarTitle(title: "Batman Movies")
         colorNavigationBar(navigationController: self.navigationController)
         view.backgroundColor = .white
         
+        //Register UIcolectionView Cell
         collectionView.register(AllBatmanMoviesHomeViewCell.self, forCellWithReuseIdentifier: homeIdentifierCell)
         collectionView.showsVerticalScrollIndicator = false
+        
+        //Add UIcollectionView to Main View
         view.addSubview(collectionView)
+        
+        //UIcollectionView layout
         collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, height: 0, width: 0)
         getAllBatmanMovies()
     }
@@ -64,7 +70,7 @@ class AllBatmanMoviesHomeVC : UIViewController, UICollectionViewDelegate, UIColl
    
     
 
-    
+    //MARK: --- Get All Batman Movies API call
     func getAllBatmanMovies() {
 
             let urlString = BASEURL
@@ -86,6 +92,7 @@ class AllBatmanMoviesHomeVC : UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    //Response JSON
         func  updateBatmanData(json : JSON) {
             
                if let title = json["Title"].string {
@@ -129,6 +136,7 @@ class AllBatmanMoviesHomeVC : UIViewController, UICollectionViewDelegate, UIColl
             
 }
     
+    //MARK: ---- UIcollection View Delegate Manipulation
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
           return 1

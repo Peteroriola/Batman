@@ -7,11 +7,9 @@
 
 import UIKit
 
-
-
 class BatmanDetailsVC: UIViewController {
 
-    
+    //Declare Variables and Methods
     var passedDetailsArray = [BatmanModel]()
 
     
@@ -34,8 +32,7 @@ class BatmanDetailsVC: UIViewController {
         let pictureContainerImageView: CustomImageView = {
         let iv = CustomImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             iv.contentMode = .scaleToFill
-        // let image = UIImage(named: "paul-trienekens")
-        //iv.image = image
+
         return iv
         }()
     
@@ -229,19 +226,22 @@ class BatmanDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        //Navigation bar Manipulation
         navigationItem.titleView = navbarTitle(title: "Movie Details")
         colorNavigationBar(navigationController: self.navigationController)
         view.backgroundColor = .white
         
-        
+        //Add scroll to Main View
         view.addSubview(scrollView)
+        
+        //scrollView layout
         scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, height: 0, width: 0)
         
         [titleLabel, favouriteButton, pictureContainer, directorLabel, yearOfProductionLabel, ratedLabel, releasedLabel, runtimeLabel, genreLabel, writerLabel, actorsLabel, plotLabel, languageLabel, imdbRatingLabel, imdbVotesLabel, typeLabel, dvdLabel, boxOfficeLabel, productionLabel,countryLabel, awardsLabel].forEach{scrollView.addSubview($0)}
         
         [pictureContainerImageView].forEach{ pictureContainer.addSubview($0) }
         
+        //Favurite button Maniputation
         let isFavouriteSeletced = UserDefaults.standard.getfavourite()
         let newImage = UIImage(named: "Selected") as UIImage?
         if isFavouriteSeletced == true {
@@ -253,7 +253,7 @@ class BatmanDetailsVC: UIViewController {
         populateDetalsField()
     }
     
-
+    //MARK: ---- Populate Labels
     func populateDetalsField() {
         
         for details in passedDetailsArray {
@@ -282,6 +282,7 @@ class BatmanDetailsVC: UIViewController {
     }
     }
     
+    //MARK: ----- Layout 
     func setupLayout() {
      let width = view.frame.width
 

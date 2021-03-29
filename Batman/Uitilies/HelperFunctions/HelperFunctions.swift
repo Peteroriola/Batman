@@ -7,22 +7,16 @@
 
 import UIKit
 
-func presentSimpleToast(message:String, self:UIViewController){
-    self.view.makeToast(message, duration: 4, position: .bottom)
-}
 
-func presentSimpleErrorToast(message:String, self:UIViewController){
-    self.view.makeToast(message, duration: 10, position: .bottom)
-}
 
 func CLEAR_PAGE_LOADING_AND_TOASTS(viewcontroller:UIViewController) {
-    viewcontroller.view.hideAllToasts()
+  
     UIActivityIndicatorView.stopLoading()
 }
 
 
 func START_PAGE_LOADING(viewcontroller: UIViewController){
-    viewcontroller.view.hideAllToasts()
+  
     
     let resultingView = UIActivityIndicatorView.startLoading()
     resultingView.center = viewcontroller.self.view.center;
@@ -46,18 +40,7 @@ func STOP_PAGE_LOADING(){
      
     }
     
-    func handleErrorOnSuccess(errorDict: [String: Any], self: UIViewController) {
-        if let error = errorDict["error"]  as? String {
-            CLEAR_PAGE_LOADING_AND_TOASTS(viewcontroller: self)
-            print("handleErrorOnSuccess Err is: ", error)
-            if let msg = errorDict["message"] as? String {
-                presentSimpleErrorToast(message: msg, self: self)
-            } else {
-                presentSimpleErrorToast(message: "Something went wrong! - Please try again", self: self)
-            }
-            return
-        }
-    }
+
 
 
 
